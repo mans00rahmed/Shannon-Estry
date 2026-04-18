@@ -1,0 +1,25 @@
+{
+  "anchor": {
+    "business": "Small-scale vegetable farm",
+    "location": "Rural Ireland"
+  },
+  "nodes": [
+    { "id": "farm", "label": "Farm", "type": "Business" },
+    { "id": "workers", "label": "Workers", "type": "People" },
+    { "id": "local_food", "label": "Local Food Supply", "type": "People" },
+    { "id": "water", "label": "Water", "type": "Resource" },
+    { "id": "soil", "label": "Soil", "type": "Environment" },
+    { "id": "emissions", "label": "Emissions", "type": "Environment" },
+    { "id": "yield", "label": "Crop Yield", "type": "Outcome" },
+    { "id": "income", "label": "Farmer Income", "type": "Outcome" }
+  ],
+  "edges": [
+    { "from": "farm", "to": "water", "relation": "DEPENDS_ON" },
+    { "from": "farm", "to": "workers", "relation": "EMPLOYS" },
+    { "from": "water", "to": "soil", "relation": "AFFECTS" },
+    { "from": "soil", "to": "yield", "relation": "AFFECTS" },
+    { "from": "yield", "to": "income", "relation": "GENERATES" },
+    { "from": "income", "to": "workers", "relation": "AFFECTS" },
+    { "from": "farm", "to": "emissions", "relation": "GENERATES" }
+  ]
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "R1",
+    "condition": {
+      "water_source": "Groundwater"
+    },
+    "effects": [
+      {
+        "target": "soil",
+        "impact": "NEGATIVE",
+        "strength": "HIGH",
+        "pillar": "Planet",
+        "reason": "Groundwater extraction increases long-term soil stress"
+      }
+    ]
+  },
+  {
+    "id": "R2",
+    "condition": {
+      "fertilizer_type": "Chemical"
+    },
+    "effects": [
+      {
+        "target": "yield",
+        "impact": "POSITIVE",
+        "strength": "MEDIUM",
+        "pillar": "People",
+        "reason": "Chemical fertilizer boosts short-term yield"
+      },
+      {
+        "target": "soil",
+        "impact": "NEGATIVE",
+        "strength": "MEDIUM",
+        "pillar": "Planet",
+        "reason": "Chemical fertilizer degrades soil quality over time"
+      }
+    ]
+  },
+  {
+    "id": "R3",
+    "condition": {
+      "irrigation_method": "Drip"
+    },
+    "effects": [
+      {
+        "target": "water",
+        "impact": "POSITIVE",
+        "strength": "HIGH",
+        "pillar": "Place",
+        "reason": "Drip irrigation reduces water stress"
+      }
+    ]
+  },
+  {
+    "id": "R4",
+    "condition": {
+      "energy_use": "Fuel"
+    },
+    "effects": [
+      {
+        "target": "emissions",
+        "impact": "NEGATIVE",
+        "strength": "HIGH",
+        "pillar": "Planet",
+        "reason": "Fuel-based machinery increases emissions"
+      }
+    ]
+  }
+]

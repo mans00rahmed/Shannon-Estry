@@ -1,0 +1,200 @@
+.shannon-portal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.shannon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-active);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.shannon-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent) 40%, var(--accent) 60%, transparent);
+  opacity: 0.4;
+}
+
+.shannon-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.shannon-subtitle {
+  margin: 2px 0 0;
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.shannon-refresh-btn {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.18s;
+}
+
+.shannon-refresh-btn:hover:not(:disabled) {
+  background: rgba(0, 200, 232, 0.25);
+  box-shadow: var(--glow);
+}
+
+.shannon-refresh-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Tabs (mobile) ── */
+.shannon-tabs {
+  display: none;
+  padding: 6px 10px;
+  gap: 5px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.shannon-tab {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.15s;
+}
+
+.shannon-tab.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Body ── */
+.shannon-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.shannon-map-wrap {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+}
+
+/* ── Legend ── */
+.shannon-legend {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(6, 21, 37, 0.92);
+  border: 1px solid var(--border-active);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--glow);
+}
+
+/* ── Sidebar ── */
+.shannon-sidebar {
+  width: 290px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-panel);
+}
+
+.shannon-section-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  margin-bottom: 6px;
+}
+
+.shannon-divider {
+  height: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Footer ── */
+.shannon-footer {
+  display: flex;
+  gap: 14px;
+  padding: 5px 14px;
+  font-size: 9px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--bg-surface);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+}
+
+.shannon-footer a { color: var(--text-muted); text-decoration: none; }
+.shannon-footer a:hover { color: var(--accent); }
+
+/* ── Spinner ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.shannon-spinner {
+  width: 28px; height: 28px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .shannon-tabs { display: flex; }
+  .shannon-body { flex-direction: column; }
+  .shannon-map-wrap { height: 55vw; min-height: 260px; flex: none; }
+  .shannon-sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); }
+  .shannon-hide-mobile { display: none; }
+  .shannon-hide-mobile-tab { display: none; }
+}

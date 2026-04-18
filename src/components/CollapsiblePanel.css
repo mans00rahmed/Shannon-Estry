@@ -1,0 +1,123 @@
+.collapsible-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.panel-header-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+  height: 44px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--border-active);
+  flex-shrink: 0;
+  transition: background 0.18s;
+  position: relative;
+}
+
+.panel-header-toggle::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
+  opacity: 0.35;
+}
+
+.panel-header-toggle:hover {
+  background: var(--bg-hover);
+}
+
+.panel-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.panel-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.panel-title-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+}
+
+.collapse-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.collapse-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.toggle-icon {
+  font-size: 10px;
+  transition: transform 0.28s ease;
+  display: inline-block;
+  line-height: 1;
+}
+
+.toggle-icon.collapsed {
+  transform: rotate(-90deg);
+}
+
+/* ── Content ── */
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.panel-content.hidden,
+.collapsible-panel.collapsed .panel-content {
+  display: none;
+}
+
+.collapsible-panel.collapsed .panel-title-text {
+  display: none;
+}
+
+.collapsible-panel.collapsed .panel-header-left {
+  justify-content: center;
+  width: 100%;
+}
+
+.collapsible-panel.collapsed .panel-header-toggle {
+  padding: 0 8px;
+  justify-content: center;
+}
+
+.collapsible-panel.collapsed .collapse-toggle-btn {
+  display: none;
+}
