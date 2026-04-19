@@ -149,7 +149,7 @@ function ImpactCentre({ inputs, nodeImpacts, edgeImpacts, threePImpacts }) {
         }}>
           People · Place · Planet — Current Assessment
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8 }}>
+        <div className="pillar-score-grid">
           {['People', 'Place', 'Planet'].map(p => (
             <PillarScore key={p} label={p} value={threePImpacts[p]} />
           ))}
@@ -157,13 +157,10 @@ function ImpactCentre({ inputs, nodeImpacts, edgeImpacts, threePImpacts }) {
       </div>
 
       {/* ── Body: active impacts left, graph right ── */}
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0 }}>
+      <div className="impact-centre-body">
 
         {/* Active impact cards */}
-        <div style={{
-          width: 320, flexShrink: 0, borderRight: '1px solid var(--border-0)',
-          overflowY: 'auto', padding: '14px 12px', background: 'var(--bg-1)',
-        }}>
+        <div className="impact-cards-col">
           <div style={{
             fontSize: 9, fontFamily: 'var(--mono)', color: 'var(--text-2)',
             textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10,
@@ -315,6 +312,7 @@ function ChatPanel({ stateRef }) {
 // ══════════════════════════════════════════════════════════════════════════════
 export default function App() {
   const [view, setView] = useState('shannon')
+  const [mobilePanelTab, setMobilePanelTab] = useState('impact')
 
   const [inputs, setInputs] = useState({
     water_source: 'Rain', fertilizer_type: 'Organic',
@@ -377,8 +375,23 @@ export default function App() {
 
         ) : (
           <>
+            {/* Mobile tab bar */}
+            <div className="mobile-tabs">
+              {[
+                { id: 'inputs', label: 'Inputs' },
+                { id: 'impact', label: 'Impact' },
+                { id: 'chat',   label: 'Chat' },
+              ].map(t => (
+                <button
+                  key={t.id}
+                  className={`mobile-tab ${mobilePanelTab === t.id ? 'active' : ''}`}
+                  onClick={() => setMobilePanelTab(t.id)}
+                >{t.label}</button>
+              ))}
+            </div>
+
             {/* LEFT — Farm Inputs */}
-            <aside className="sidebar sidebar-left">
+            <aside className={`sidebar sidebar-left${mobilePanelTab !== 'inputs' ? ' mobile-hidden' : ''}`}>
               <div className="section-head">
                 <span className="section-head-label">Farm Inputs</span>
                 <span className="section-head-tag">
@@ -391,7 +404,7 @@ export default function App() {
             </aside>
 
             {/* CENTER — Layman impact dashboard */}
-            <div className="main-panel">
+            <div className={`main-panel${mobilePanelTab !== 'impact' ? ' mobile-hidden' : ''}`}>
               <ImpactCentre
                 inputs={inputs}
                 nodeImpacts={nodeImpacts}
@@ -401,7 +414,7 @@ export default function App() {
             </div>
 
             {/* RIGHT — AI Chatbot */}
-            <aside className="sidebar sidebar-right" style={{ display: 'flex', flexDirection: 'column' }}>
+            <aside className={`sidebar sidebar-right${mobilePanelTab !== 'chat' ? ' mobile-hidden' : ''}`} style={{ display: 'flex', flexDirection: 'column' }}>
               <div className="section-head">
                 <span className="section-head-label">AI Assistant</span>
                 <span className="section-head-tag" style={{ color: 'var(--accent-green)' }}>context-aware</span>

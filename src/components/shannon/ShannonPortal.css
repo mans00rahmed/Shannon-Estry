@@ -75,21 +75,22 @@
   display: none;
   padding: 6px 10px;
   gap: 5px;
-  background: var(--bg-panel);
-  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border-0);
+  flex-shrink: 0;
 }
 
 .shannon-tab {
   flex: 1;
   padding: 6px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-1);
   background: transparent;
-  color: var(--text-muted);
-  border-radius: 5px;
+  color: var(--text-2);
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 11px;
-  font-weight: 600;
-  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.15s;
@@ -192,9 +193,4 @@
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .shannon-tabs { display: flex; }
-  .shannon-body { flex-direction: column; }
-  .shannon-map-wrap { height: 55vw; min-height: 260px; flex: none; }
-  .shannon-sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); }
-  .shannon-hide-mobile { display: none; }
-  .shannon-hide-mobile-tab { display: none; }
 }

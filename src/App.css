@@ -793,3 +793,141 @@
   width: 22px; height: 2px;
   border-radius: 1px;
 }
+
+/* ═══════════════════════════════════════════
+   IMPACT CENTRE LAYOUT CLASSES
+   (converted from inline styles for media query support)
+═══════════════════════════════════════════ */
+.pillar-score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.impact-centre-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.impact-cards-col {
+  width: 320px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-0);
+  overflow-y: auto;
+  padding: 14px 12px;
+  background: var(--bg-1);
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE TAB BAR (3P Impact view)
+═══════════════════════════════════════════ */
+.mobile-tabs {
+  display: none;
+}
+
+.mobile-tab {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid var(--border-1);
+  background: transparent;
+  color: var(--text-2);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.15s;
+}
+
+.mobile-tab.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════
+   SHANNON PANELS WRAPPER
+═══════════════════════════════════════════ */
+.shannon-panels {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE — 768px breakpoint
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Topbar */
+  .topbar { padding: 0 10px; gap: 8px; flex-wrap: nowrap; }
+  .topbar-sep { display: none; }
+  .topbar-name { font-size: 10px; letter-spacing: 0.06em; }
+  .nav-btn { padding: 4px 9px; font-size: 9px; }
+  .live-badge { display: none; }
+  .topbar-time { font-size: 10px; }
+
+  /* Status bar */
+  .statusbar { gap: 8px; padding: 0 8px; }
+  .status-item { font-size: 8px; }
+  .status-item:nth-child(n+3) { display: none; }
+
+  /* Workspace: column layout for tab-based navigation */
+  .workspace { flex-direction: column; overflow: hidden; }
+
+  /* Mobile tab bar */
+  .mobile-tabs {
+    display: flex;
+    gap: 5px;
+    padding: 6px 10px;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border-0);
+    flex-shrink: 0;
+  }
+
+  /* Hide non-active panels */
+  .mobile-hidden { display: none !important; }
+
+  /* Sidebars fill full width */
+  .sidebar-left, .sidebar-right {
+    width: 100% !important;
+    border-right: none !important;
+    border-left: none !important;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Main panel fills remaining space */
+  .main-panel { flex: 1; min-height: 0; }
+
+  /* Shannon panels */
+  .shannon-panels { flex-direction: column; }
+  .shannon-panels .sidebar-left,
+  .shannon-panels .sidebar-right { flex: 1; min-height: 0; }
+  .shannon-panels > div:not(.mobile-hidden) { flex: 1; min-height: 200px; }
+
+  /* Impact centre: stack vertically */
+  .pillar-score-grid { grid-template-columns: 1fr; gap: 6px; }
+  .impact-centre-body { flex-direction: column; overflow-y: auto; }
+  .impact-cards-col {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-0);
+    flex-shrink: 0;
+    max-height: 45vh;
+  }
+
+  /* Graph legend bar: wrap */
+  .graph-legend-bar { flex-wrap: wrap; gap: 8px; padding: 6px 10px; }
+}
+
+@media (max-width: 480px) {
+  .topbar-logo { font-size: 16px; }
+  .topbar-name { font-size: 9px; letter-spacing: 0.04em; }
+  .nav-btn { padding: 4px 6px; font-size: 8px; letter-spacing: 0.06em; }
+  .topbar-time { display: none; }
+}

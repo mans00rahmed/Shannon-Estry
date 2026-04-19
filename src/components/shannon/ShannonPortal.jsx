@@ -28,10 +28,28 @@ export default function ShannonPortal() {
   }, [loadData])
 
   return (
-    <div style={{ display: 'flex', flex: 1, overflow: 'hidden', minWidth: 0 }}>
+    <div style={{ display: 'flex', flex: 1, overflow: 'hidden', minWidth: 0, flexDirection: 'column' }}>
+
+      {/* ── Mobile tab bar ── */}
+      <div className="shannon-tabs">
+        {[
+          { id: 'stations', label: 'Stations' },
+          { id: 'map',      label: 'Map' },
+          { id: 'details',  label: 'Details' },
+        ].map(t => (
+          <button
+            key={t.id}
+            className={`shannon-tab ${mobileTab === t.id ? 'active' : ''}`}
+            onClick={() => setMobileTab(t.id)}
+          >{t.label}</button>
+        ))}
+      </div>
+
+      {/* ── Main panels row ── */}
+      <div className="shannon-panels">
 
       {/* ── LEFT: Station list ── */}
-      <aside className="sidebar sidebar-left" style={{ display: 'flex', flexDirection: 'column' }}>
+      <aside className={`sidebar sidebar-left${mobileTab !== 'stations' ? ' mobile-hidden' : ''}`} style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="section-head" style={{ justifyContent: 'space-between' }}>
           <span className="section-head-label">Stations</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -70,7 +88,7 @@ export default function ShannonPortal() {
       </aside>
 
       {/* ── CENTER: Map ── */}
-      <div style={{ flex: 1, position: 'relative', overflow: 'hidden', minWidth: 0 }}>
+      <div className={mobileTab !== 'map' ? 'mobile-hidden' : ''} style={{ flex: 1, position: 'relative', overflow: 'hidden', minWidth: 0 }}>
         <ShannonMap
           points={points}
           selectedPoint={selected}
@@ -94,7 +112,7 @@ export default function ShannonPortal() {
       </div>
 
       {/* ── RIGHT: Weather detail ── */}
-      <aside className="sidebar sidebar-right" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <aside className={`sidebar sidebar-right${mobileTab !== 'details' ? ' mobile-hidden' : ''}`} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div className="section-head">
           <span className="section-head-label">Conditions</span>
           {selected && <span className="section-head-tag">{selected.name}</span>}
@@ -104,6 +122,7 @@ export default function ShannonPortal() {
         </div>
       </aside>
 
+      </div>{/* /.shannon-panels */}
     </div>
   )
 }
